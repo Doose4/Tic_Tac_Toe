@@ -1,13 +1,13 @@
 #include <string>
+#include <array>
 using namespace std;
 
 class Board
 {
-private:
-	array<string, 9> board;
+    array<string, 9> board;
 
 public:
-	string get_name();
-	explicit Dog(string name);
-	void speak();
+    explicit Board();
+    void make_move(int cell, char mark);
+    string get_mark(int cell);
 };

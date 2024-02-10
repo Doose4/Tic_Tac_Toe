@@ -18,6 +18,11 @@ void Board::make_move(int cell, char mark)
 };
 
 string Board::get_mark(int cell)
-{
-    return board[cell - 1];
+{   
+    string symb = board[cell - 1];
+    if (symb == "_")
+    {
+        return " ";
+    }
+    return symb;
 };

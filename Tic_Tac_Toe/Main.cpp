@@ -26,24 +26,22 @@ int main()
 
     cout << creator.formatted_board() << endl;
 
+    //set rules rules for program
     Rules rules = Rules(board_ptr);
 
-    bool too_low = rules.validate_input(-20);
+    //Too low out of tolarance
+    assert(rules.validate_input(-20) == false);
 
-    assert(too_low == false);
+    //Too high out of tolarance
+    assert(rules.validate_input(20) == false);
 
-    bool too_high = rules.validate_input(20);
+    //Within tolarance but already taken
+    assert(rules.validate_input(7) == false);
 
-    assert(too_high == false);
+    //Within tolarance AND empty
+    assert(rules.validate_input(6) == true);
 
-    bool just_right_and_not_taken = rules.validate_input(6);
-
-    assert(just_right_and_not_taken == true);
-
-    bool already_taken = rules.validate_input(7);
-
-    assert(already_taken == false);
-
+    //Makes a three in a row 
     board.make_move(1, 'X');
     board.make_move(2, 'X');
     board.make_move(3, 'X');

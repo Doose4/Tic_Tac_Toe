@@ -8,6 +8,6 @@ class Board
 
 public:
     explicit Board();
-    void make_move(int cell, char mark);
+    void make_move(int cell, string mark);
     string get_mark(int cell);
 };

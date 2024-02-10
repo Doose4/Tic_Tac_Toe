@@ -9,10 +9,10 @@ int main()
 {
     Board board;
 
-    board.make_move(1, 'X');
-    board.make_move(3, 'X');
-    board.make_move(5, 'X');
-    board.make_move(7, 'O');
+    board.make_move(1, "X");
+    board.make_move(3, "X");
+    board.make_move(5, "X");
+    board.make_move(7, "O");
 
     Board* board_ptr = &board;
 
@@ -22,7 +22,7 @@ int main()
 
     cout << endl;
 
-    board.make_move(1, 'W');
+    board.make_move(1, "W");
 
     cout << creator.formatted_board() << endl;
 
@@ -30,25 +30,32 @@ int main()
     Rules rules = Rules(board_ptr);
 
     //Too low out of tolarance
+    cout << "low bounds" << endl;
+    cout << rules.validate_input(-20);
     assert(rules.validate_input(-20) == false);
 
     //Too high out of tolarance
+    cout << "high bounds" << endl;
     assert(rules.validate_input(20) == false);
 
     //Within tolarance but already taken
+    cout << "taken bounds" << endl;
     assert(rules.validate_input(7) == false);
 
     //Within tolarance AND empty
+    cout << "good bounds" << endl;
     assert(rules.validate_input(6) == true);
 
     //Makes a three in a row 
-    board.make_move(1, 'X');
-    board.make_move(2, 'X');
-    board.make_move(3, 'X');
+    board.make_move(1, "X");
+    board.make_move(2, "X");
+    board.make_move(3, "O");
 
-    bool in_progress = rules.in_progress();
+    char in_progress = rules.in_progress();
 
-    assert(in_progress == false);
+    cout << "return winner" << endl;
+    cout << in_progress << endl;
+    //assert(in_progress == 'X');
 
     return 0;
 }

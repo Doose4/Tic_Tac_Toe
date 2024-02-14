@@ -11,7 +11,7 @@ ConsoleBoardCreator::ConsoleBoardCreator(Board* inputted_board)
 string ConsoleBoardCreator::formatted_board()
 {
     // This implementation is incomplete. Make sure you fill in the rest! It would also help to break this long string up using some private methods.
-    return create_row(0) + create_row(1) + create_row(2);
+    return create_row(0) + create_row(1) + create_row(2) + "\n";
 };
 
 string ConsoleBoardCreator::create_row(int mult) {

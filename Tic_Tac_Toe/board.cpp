@@ -10,6 +10,12 @@ Board::Board()
     {
         board[i] = "_";
     }
+    marks[0] = "X";
+    marks[1] = "O";
+};
+
+string Board::get_user(int user) {
+    return marks[user];
 };
 
 void Board::make_move(int cell, string mark)

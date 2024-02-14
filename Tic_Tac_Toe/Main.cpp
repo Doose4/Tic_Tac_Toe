@@ -1,12 +1,11 @@
 #include <iostream>
 #include <array>
 #include <cassert>
-#include "rules.hpp"
+#include "Game.hpp"
 
 using namespace std;
 
-int main()
-{
+void Tester() {
     Board board;
 
     board.make_move(1, "X");
@@ -49,13 +48,26 @@ int main()
     //Makes a three in a row 
     board.make_move(1, "X");
     board.make_move(2, "X");
-    board.make_move(3, "O");
+    board.make_move(3, "X");
 
     char in_progress = rules.in_progress();
 
     cout << "return winner" << endl;
-    cout << in_progress << endl;
-    //assert(in_progress == 'X');
+    assert(in_progress == 'X');
 
-    return 0;
+}
+
+int main()
+{
+    Board board;
+    Board* board_ptr = &board;
+
+    ConsoleBoardCreator creator = ConsoleBoardCreator(board_ptr);
+    ConsoleBoardCreator* creator_ptr = &creator;
+
+    Rules rules = Rules(board_ptr);
+    Rules* rules_ptr = &rules;
+
+    Game game = Game(board_ptr, rules_ptr, creator_ptr);
+    game.start();
 }

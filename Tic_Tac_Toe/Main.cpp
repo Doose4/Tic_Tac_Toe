@@ -54,11 +54,18 @@ void Tester() {
 
     cout << "return winner" << endl;
     assert(in_progress == 'X');
-
 }
 
 int main()
 {
+    string user_input;
+    cout << "\t\t Welcome to Tic-Tac-Toe! Press enter to begin!\n\n";
+
+    cin >> user_input;
+    if (user_input == "test") {
+        Tester();
+    }
+
     Board board;
     Board* board_ptr = &board;
 

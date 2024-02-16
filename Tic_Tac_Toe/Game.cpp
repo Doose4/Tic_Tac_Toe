@@ -53,7 +53,7 @@ void Game::start()
         input = 0;
         std::cout << creator->formatted_board();
         while (input == 0) {
-            std::cout << "Player " << user +1 << ", Where do you want to mark? ";
+            std::cout << "Player " << user +1 << ", What space, 1-9, do you want to mark? ";
             cin >> input;
             input= validate_user_input(input);
         }

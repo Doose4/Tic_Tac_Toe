@@ -3,12 +3,13 @@
 #include "rules.hpp"
 using namespace std;
 
-
+//sets board
 Rules::Rules(Board* inputted_board)
 {
     board = inputted_board;
 };
 
+//checks if input is taken
 bool Rules::validate_input(int input)
 {
     if (input < 1 || input > 9 || board->get_mark(input)!=" ")
@@ -19,6 +20,7 @@ bool Rules::validate_input(int input)
     return true;
 };
 
+//checks whether game is in progress
 char Rules::in_progress()
 {    
     if (three_in_a_row() == "X")
@@ -32,6 +34,7 @@ char Rules::in_progress()
     return '_';
 };
 
+//sees if there is a winner
 string Rules::three_in_a_row()
 {
     for (int i = 0; i < 3; i++) {
@@ -56,6 +59,7 @@ string Rules::three_in_a_row()
     return "_";
 };
 
+//tests for three in a row taking in three locations
 string Rules::transitional_test(int frst, int scnd, int thrd)
 {
     if (board->get_mark(frst) == board->get_mark(scnd) && board->get_mark(scnd) == board->get_mark(thrd) && board->get_mark(frst) != " ")
@@ -68,6 +72,7 @@ string Rules::transitional_test(int frst, int scnd, int thrd)
     }
 };
 
+//returns whether or not it is a tied game
 bool Rules::cats_game() {
     for (int i = 1; i < 10; i++) {
         if (board->get_mark(i) == " ") return false;

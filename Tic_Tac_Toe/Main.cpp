@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//tests different parts of the code
 void Tester() {
     Board board;
 
@@ -54,16 +55,20 @@ void Tester() {
 
     cout << "return winner" << endl;
     assert(in_progress == 'X');
+    cout << "testing complete! Thank you";
 }
 
+//runs the program
 int main()
 {
     string user_input;
-    cout << "\t\t Welcome to Tic-Tac-Toe! Press enter to begin!\n\n";
+    cout << "\t\t Welcome to Tic-Tac-Toe! Type play to begin!\n\n";
 
     cin >> user_input;
+    cin.ignore(256, '\n');
     if (user_input == "test") {
         Tester();
+        return 0;
     }
 
     Board board;

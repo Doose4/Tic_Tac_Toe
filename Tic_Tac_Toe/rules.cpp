@@ -23,10 +23,11 @@ bool Rules::validate_input(int input)
 //checks whether game is in progress
 char Rules::in_progress()
 {    
-    if (three_in_a_row() == "X")
+    string winner = three_in_a_row();
+    if (winner == "X")
     {
         return 'X';
-    } else if (three_in_a_row() == "O") {
+    } else if (winner == "O") {
         return 'O';
     } else if (cats_game()== true) {
         return 'C';

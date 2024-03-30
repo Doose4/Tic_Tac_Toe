@@ -1,5 +1,6 @@
 #include <iostream>
 #include "rules.hpp"
+#include "Player.hpp"
 using namespace std;
 
 class Game

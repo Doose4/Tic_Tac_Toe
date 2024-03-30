@@ -20,6 +20,10 @@ string Board::get_user(int user) {
     return marks[user];
 };
 
+void Board::set_mark(string user) {
+
+};
+
 //set's the mark
 void Board::make_move(int cell, string mark)
 {

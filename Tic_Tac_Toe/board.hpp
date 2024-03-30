@@ -10,6 +10,7 @@ class Board
 public:
     explicit Board();
     string get_user(int user);
+    void set_mark(string user);
     void make_move(int cell, string mark);
     string get_mark(int cell);
 };

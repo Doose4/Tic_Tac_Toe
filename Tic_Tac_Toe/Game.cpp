@@ -52,10 +52,10 @@ void Game::print_end_game_message(char return_character) {
     switch (return_character)
     {
     case 'X':
-        std::cout << "\t\tX won! Good job Player!!\n";
+        std::cout << "\t\tPlayer 1 won! Good job Player!!\n";
         break;
     case 'O':
-        std::cout << "\t\tO won! Good job Player!!\n";
+        std::cout << "\t\tPlayer 2 won! Good job Player!!\n";
         break;
     case 'C':
         std::cout << "\t\tNobody won! Good job Players!!\n";

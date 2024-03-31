@@ -8,6 +8,10 @@ using namespace std;
 Board::Board()
 {
     this->create_empty_board();
+    for (int i = 0; i < 2; i++)
+    {
+        usedmarks[i] = "_";
+    }
 };
 
 //Resets thte board so it's empty
@@ -34,4 +38,13 @@ string Board::get_mark(int cell)
         return " ";
     }
     return symb;
+};
+
+void Board::set_mark(int usernum, string usermark) {
+    usedmarks[usernum-1] = usermark;
+};
+
+string Board::get_user(int usernum) {
+    return usedmarks[usernum-1];
+
 };

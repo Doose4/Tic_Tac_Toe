@@ -24,10 +24,10 @@ bool Rules::validate_input(int input)
 char Rules::in_progress()
 {    
     string winner = three_in_a_row();
-    if (winner == "X")
+    if (winner == board->get_user(1))
     {
         return 'X';
-    } else if (winner == "O") {
+    } else if (winner == board->get_user(2)) {
         return 'O';
     } else if (cats_game()== true) {
         return 'C';

@@ -1,10 +1,11 @@
 #include "first_spot_player.hpp"
 
-FirstSpotPlayer::FirstSpotPlayer(Board* inputted_board, Rules* rules_ptr, string symbol)
+FirstSpotPlayer::FirstSpotPlayer(Board* inputted_board, Rules* rules_ptr, string symbol, int usernum)
 {
     this->board = inputted_board;
     this->rules = rules_ptr;
-    this->symbol = symbol;
+    usernumber = usernum;
+    board->set_mark(usernum, symbol);
 }
 
 void FirstSpotPlayer::move(int user)
@@ -15,7 +16,7 @@ void FirstSpotPlayer::move(int user)
         if (mark == " ")
         {
             cout << endl;
-            board->make_move(i, symbol);
+            board->make_move(i, board->get_user(usernumber));
             break;
         }
     }

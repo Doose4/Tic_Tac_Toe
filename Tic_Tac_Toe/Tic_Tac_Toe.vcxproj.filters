@@ -33,16 +33,16 @@
     <ClCompile Include="human_player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp1_player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ExitMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp2_player.cpp">
+    <ClCompile Include="first_spot_player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="second_spot_player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,16 +65,16 @@
     <ClInclude Include="human_player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cp1_player.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExitMenu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cp2_player.hpp">
+    <ClInclude Include="first_spot_player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="second_spot_player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

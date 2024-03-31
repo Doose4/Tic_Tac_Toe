@@ -12,7 +12,7 @@ Rules::Rules(Board* inputted_board)
 //checks if input is taken
 bool Rules::validate_input(int input)
 {
-    if (input < 1 || input > 9 || board->get_mark(input)!=" ")
+    if (input < 1 || input > 9 /* || board->get_mark(input) != " "*/)
     {
         return false;
     }

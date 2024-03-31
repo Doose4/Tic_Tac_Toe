@@ -7,22 +7,17 @@ using namespace std;
 //Creates Board
 Board::Board()
 {
+    this->create_empty_board();
+};
+
+//Resets thte board so it's empty
+void Board::create_empty_board()
+{
     for (int i = 0; i < 9; i++)
     {
-        board[i] = "_";
+        board[i] = '_';
     }
-    marks[0] = "X";
-    marks[1] = "O";
-};
-
-//get's the users mark
-string Board::get_user(int user) {
-    return marks[user];
-};
-
-void Board::set_mark(string user) {
-
-};
+}
 
 //set's the mark
 void Board::make_move(int cell, string mark)

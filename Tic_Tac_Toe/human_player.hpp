@@ -1,14 +1,15 @@
+#include <string>
 #include "Player.hpp"
 #include "rules.hpp"
 
-class Human_Player : public Player
+class HumanPlayer : public Player
 {
 private:
 	Board* board;
-	char player_char;
+	Rules* rules;
+	string symbol;
 
 public:
-	Human_Player(Board* inputted_board);
-	void move() override;
-	char get_character() override;
+	HumanPlayer(Board* inputted_board, Rules* rules_ptr, string symbol);
+	void move(int user) override;
 };

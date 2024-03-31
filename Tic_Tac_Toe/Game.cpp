@@ -4,25 +4,43 @@
 using namespace std;
 
 //Sets pointer locations for different sub classes
-Game::Game(Board* board_ptr, Rules* rules_ptr, ConsoleBoardCreator* creator_ptr)
+Game::Game(Board* board_ptr, Rules* rules_ptr, ConsoleBoardCreator* creator_ptr, Player* player_one_ptr, Player* player_two_ptr)
 {
     board = board_ptr;
     rules = rules_ptr;
     creator = creator_ptr;
+    player_one = player_one_ptr;
+    player_two = player_two_ptr;
+    current_player = player_one;
+    usernum = 1;
 };
 
-//get's the user
-string Game::get_user_char(int user){
-    return board->get_user(user);
-};
+//resets the game
+void Game::reset()
+{
+    board->create_empty_board();
+    current_player = player_one;
+}
+
+//switches who the current player is
+void Game::switch_player()
+{
+    if (current_player == player_one)
+    {
+        current_player = player_two;
+        usernum = 2;
+    }
+    else
+    {
+        current_player = player_one;
+        usernum = 1;
+    }
+}
 
 //Validates the input that the user makes
 int Game::validate_user_input(int value_input) {
-
-    if(value_input < 10 && value_input > 0) {
-        if (board->get_mark(value_input) == " ") {
-            return value_input;
-        }
+    if (rules->validate_input(value_input)) {
+        return value_input;
     }
     
     std::cout << "That was not a valid cell! ";
@@ -51,22 +69,11 @@ void Game::print_end_game_message(char return_character) {
 //Sets up the game
 void Game::start()
 {
-    int input;
-    int user = 0;
-
     while (rules->in_progress() == '_')
     {
-        input = 0;
         std::cout << creator->formatted_board();
-        while (input == 0) {
-            std::cout << "Player " << user +1 << ", What cell, 1-9, do you want to mark? ";
-            cin >> input;
-            cin.clear();
-            cin.ignore(256, '\n');
-            input= validate_user_input(input);
-        }
-        board->make_move(input, get_user_char(user));
-        user = (user + 1) % 2;
+        current_player->move(usernum);
+        switch_player();
     }
     print_end_game_message(rules->in_progress());
 };

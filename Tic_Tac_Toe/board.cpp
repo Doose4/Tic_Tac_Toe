@@ -15,7 +15,7 @@ void Board::create_empty_board()
 {
     for (int i = 0; i < 9; i++)
     {
-        board[i] = '_';
+        board[i] = "_";
     }
 }
 

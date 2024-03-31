@@ -1,3 +1,4 @@
+#pragma once
 #include "rules.hpp"
 #include "player.hpp"
 

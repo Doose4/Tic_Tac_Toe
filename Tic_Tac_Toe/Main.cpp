@@ -64,13 +64,21 @@ int main()
     string user_input;
     cout << "\t\t Welcome to Tic-Tac-Toe! Type play to begin!\n\n";
 
+    Board aboard;
+    ConsoleBoardCreator acreator = ConsoleBoardCreator(&aboard);
+    Rules arules = Rules(&aboard);
+
     cin >> user_input;
     cin.ignore(256, '\n');
     if (user_input == "test") {
         Tester();
         return 0;
+    } else if (user_input == "default") {
+        MainMenu defaultgame = MainMenu(&aboard, &acreator, &arules);
+        defaultgame.Rungame("default");
+    } else {
+        MainMenu firstgame = MainMenu(&aboard, &acreator, &arules);
+        firstgame.Rungame();
     }
 
-    MainMenu firstgame;
-    firstgame.Rungame();
 }

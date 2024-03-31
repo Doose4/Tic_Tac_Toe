@@ -1,11 +1,11 @@
-#include "rules.hpp"
+#pragma once
+#include "board.hpp"
 
 class ExitMenu
 {
 	Board* board;
-	Rules* rules;
 
 public:
-	ExitMenu(Board* inputted_board, Rules* rules_ptr);
+	ExitMenu(Board* inputted_board);
 	bool Exitout();
 };

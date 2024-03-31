@@ -11,7 +11,6 @@ Game::Game(Board* board_ptr, Rules* rules_ptr, ConsoleBoardCreator* creator_ptr,
     creator = creator_ptr;
     player_one = player_one_ptr;
     player_two = player_two_ptr;
-    current_player = player_one;
     usernum = 1;
 };
 
@@ -69,6 +68,7 @@ void Game::print_end_game_message(char return_character) {
 //Sets up the game
 void Game::start()
 {
+    current_player = player_one;
     while (rules->in_progress() == '_')
     {
         std::cout << creator->formatted_board();

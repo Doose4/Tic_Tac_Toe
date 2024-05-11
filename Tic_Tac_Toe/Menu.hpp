@@ -12,9 +12,10 @@ class MainMenu
     Player* player_two;
     string default_key;
     int usernum;
+    int board_size = 3;
 
 public:
-	MainMenu(Board* aboard, ConsoleBoardCreator* acreator, Rules* arule);
+	MainMenu();
 	void Rungame(string defaul = "No");
     void Chooseplayers();
 };

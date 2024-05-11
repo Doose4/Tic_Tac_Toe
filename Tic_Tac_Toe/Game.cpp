@@ -71,9 +71,10 @@ void Game::start()
     current_player = player_one;
     while (rules->in_progress() == '_')
     {
-        std::cout << creator->formatted_board();
+        std::cout << endl << creator->formatted_board() << endl;
         current_player->move(usernum);
         switch_player();
     }
+    cout << endl;
     print_end_game_message(rules->in_progress());
 };

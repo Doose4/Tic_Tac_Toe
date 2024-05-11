@@ -4,19 +4,20 @@
 using namespace std;
 
 //sets board
-Rules::Rules(Board* inputted_board)
+Rules::Rules(Board* inputted_board, int size)
 {
     board = inputted_board;
+    this->boardsize = size;
 };
 
 //checks if input is taken
 bool Rules::validate_input(int input)
 {
-    if (input < 1 || input > 9 || board->get_mark(input) != " ")
+    int endline = boardsize * boardsize;
+    if (input < 1 || input > (endline) || board->get_mark(input) != " ")
     {
         return false;
     }
-
     return true;
 };
 
@@ -38,45 +39,73 @@ char Rules::in_progress()
 //sees if there is a winner
 string Rules::three_in_a_row()
 {
-    for (int i = 0; i < 3; i++) {
-        if (transitional_test((i*3)+1, (i * 3) + 2, (i * 3) + 3) != "_") {
-            return board->get_mark(i + 1);
+    for (int i = 0; i < boardsize; i++) {
+        if (transitional_test((i*boardsize)+1, "row") != "_") {
+            return board->get_mark((i * boardsize) + 1);
         }
     }
 
-    for (int i = 0; i < 3; i++) {
-        if (transitional_test(i+1, i + 4, i + 7) != "_") {
-            return board->get_mark(i + 1);
+    for (int i = 1; i <= boardsize; i++) {
+        if (transitional_test(i, "column") != "_") {
+            return board->get_mark(i);
         }
     }
     
-    if (transitional_test(1, 5, 9) != "_") {
+    if (transitional_test(1, "diag") != "_") {
         return board->get_mark(1);
     }
 
-    if (transitional_test(3, 5, 7) != "_") {
-        return board->get_mark(3);
+    if (transitional_test(boardsize,"diag") != "_") {
+        return board->get_mark(boardsize);
     }
     return "_";
 };
 
 //tests for three in a row taking in three locations
-string Rules::transitional_test(int frst, int scnd, int thrd)
+string Rules::transitional_test(int frst, string direction)
 {
-    if (board->get_mark(frst) == board->get_mark(scnd) && board->get_mark(scnd) == board->get_mark(thrd) && board->get_mark(frst) != " ")
-    {
-        return board->get_mark(1);
+    int output1 = 0;
+    int change;
+
+    if (direction == "row") {
+        change = 1;
     }
-    else
+    else if (direction == "column") {
+        change = boardsize;
+    }
+    else {
+        if (frst > 1)
+        {
+            change = boardsize - 1;
+        }
+        else {
+            change = boardsize + 1;
+        }
+
+    }
+
+    //1,4,7
+    string markvalue;
+    for (int i = 0; i < boardsize-1; i++)
+    {
+        markvalue = board->get_mark(frst + (i * change));
+        if (markvalue != board->get_mark(frst + ((i+1) * change)) || markvalue == " ") {
+            output1 = 1;
+        }
+    }
+
+    if (output1 ==1)
     {
         return "_";
     }
+    return board->get_mark(frst);
 };
 
 //returns whether or not it is a tied game
 bool Rules::cats_game() {
-    for (int i = 1; i < 10; i++) {
-        if (board->get_mark(i) == " ") return false;
+    int endline = boardsize * boardsize;
+    for (int i = 0; i < (endline); i++) {
+        if (board->get_mark(i+1) == " ") return false;
     }
     return true;
 };

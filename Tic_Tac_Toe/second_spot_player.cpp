@@ -4,6 +4,7 @@ SecondSpotPlayer::SecondSpotPlayer(Board* inputted_board, Rules* rules_ptr, stri
 {
     this->board = inputted_board;
     this->rules = rules_ptr;
+    this->boardsize = board->get_board_size();
     usernumber = usernum;
     board->set_mark(usernum, symbol);
 }
@@ -13,7 +14,7 @@ void SecondSpotPlayer::move(int user)
     int intput = 0;
 
     while (intput == 0) {
-        intput = rand() % (9);
+        intput = rand() % ((boardsize*boardsize)+1);
 
         if (rules->validate_input(intput))
         {

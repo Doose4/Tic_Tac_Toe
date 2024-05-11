@@ -4,24 +4,39 @@
 using namespace std;
 
 //sets the board
-ConsoleBoardCreator::ConsoleBoardCreator(Board* inputted_board)
+ConsoleBoardCreator::ConsoleBoardCreator(Board* inputted_board, int size)
 {
-    board = inputted_board;
+    this->board = inputted_board;
+    this->board_size = size;
 };
 
 //displays formated board
 string ConsoleBoardCreator::formatted_board()
 {
-    return create_row(0) + create_row(1) + create_row(2) + "\n";
-};
+    string outputt = "\n";
 
-//creates each line in the board
-string ConsoleBoardCreator::create_row(int mult) {
-    int man = mult * 3;
-    if (mult<2){
-        return " " + board->get_mark(man + 1) + " | " + board->get_mark(man + 2) +
-            " | " + board->get_mark(man + 3) + " \n-----------\n";
+
+    for (int i = 0; i < board_size; i++)
+    {
+        for (int j = 0; j < board_size; j++)
+        {
+            if (j == 0) {
+                outputt = outputt + "  " + board->get_mark((i * board_size) + j+1);
+            }
+            else {
+                outputt = outputt + " | " + board->get_mark((i * board_size) + j+1);
+            }
+        }
+        if (i != board_size-1)
+        {
+            outputt = outputt + "\n" + " -";
+            for (int j = 0; j < board_size - 1; j++) {
+                outputt = outputt + "-----";
+            }
+            outputt = outputt + "\n";
+        }
+        
     }
-    return " " + board->get_mark(man+1) + " | " + board->get_mark(man+2) + 
-        " | " + board->get_mark(man+3);
+    return outputt;
+
 };

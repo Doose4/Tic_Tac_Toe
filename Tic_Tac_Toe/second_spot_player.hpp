@@ -9,6 +9,7 @@ private:
 	Rules* rules;
 	string symbol;
 	int usernumber;
+	int boardsize;
 
 public:
 	SecondSpotPlayer(Board* inputted_board, Rules* rules_ptr, string symbol, int usernum);

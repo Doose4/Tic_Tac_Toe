@@ -8,9 +8,9 @@ using namespace std;
 class ConsoleBoardCreator
 {
     Board* board;
+    int board_size;
 
 public:
-    ConsoleBoardCreator(Board* inputted_board);
+    ConsoleBoardCreator(Board* inputted_board, int size = 3);
     string formatted_board();
-    string create_row(int multi);
 };

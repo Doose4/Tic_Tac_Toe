@@ -4,25 +4,69 @@
 using namespace std;
 
 //sets board
-MainMenu::MainMenu(Board* aboard, ConsoleBoardCreator* acreate, Rules* arule)
+MainMenu::MainMenu()
 {
-    board = aboard;
-    
-    creator = acreate;
+    string user_input;
+    int board_input;
+    bool sizetest = true;
+    bool playinput = true;
 
-    rules = arule;
+
+    while (sizetest)
+    {
+        cout << "What size game do you want to be played? " << endl;
+
+        cin >> board_input;
+        cin.ignore(256, '\n');
+
+        if (board_input > 2)
+        {
+            this->board_size = board_input;
+            sizetest = false;
+        }
+        else {
+            cout << "That size was not valid... Please try again." << endl;
+        }
+    }
+
+    Board aboard = Board(board_size);
+    board = &aboard;
+    ConsoleBoardCreator acreator = ConsoleBoardCreator(&aboard, board_size);
+    creator = &acreator;
+    Rules arules = Rules(&aboard, board_size);
+    rules = &arules;
+
+    while (playinput)
+    {
+        cout << "Are you ready to play?" << endl;
+        cin >> user_input;
+        cin.ignore(256, '\n');
+        if (user_input == "help") {
+            cout << "Please open the read me file, else you can type default to run a standard game against a computer or you can type play to choose a custom game. See below board for what numbers to input while playing or type help to see this board while playing.";
+            cout << endl << board->help_board() << endl;
+        }
+        else if (user_input == "default") {
+            playinput = false;
+            Rungame("default");
+        }
+        else {
+            playinput = false;
+            Rungame();
+        }
+    }
+
 };
 
 void MainMenu::Rungame(string defaul) {
+   
     if (defaul == "default") {
         HumanPlayer aplayer_one = HumanPlayer(board, rules, "X", 1);
         player_one = &aplayer_one;
         SecondSpotPlayer aplayer_two = SecondSpotPlayer(board, rules,"O",2);
         player_two = &aplayer_two;
-    }
-    else {
+    }     else {
         string userinput;
-
+            
         //set first character
         string usercharacter = "X";
 
@@ -115,9 +159,4 @@ void MainMenu::Rungame(string defaul) {
         Gamerunning = Exmenu.Exitout();
 
     }
-};
-
-void MainMenu::Chooseplayers() {
-    
-
 };

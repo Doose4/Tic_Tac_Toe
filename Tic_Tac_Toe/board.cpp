@@ -5,21 +5,20 @@
 using namespace std;
 
 //Creates Board
-Board::Board()
+Board::Board(int bsize)
 {
+    board_size = bsize;
     this->create_empty_board();
-    for (int i = 0; i < 2; i++)
-    {
-        usedmarks[i] = "_";
-    }
 };
 
 //Resets thte board so it's empty
 void Board::create_empty_board()
 {
-    for (int i = 0; i < 9; i++)
+    board.clear();
+    int endline = board_size * board_size;
+    for (int i = 0; i < (endline); i++)
     {
-        board[i] = "_";
+        board.push_back("_");
     }
 }
 
@@ -46,5 +45,39 @@ void Board::set_mark(int usernum, string usermark) {
 
 string Board::get_user(int usernum) {
     return usedmarks[usernum-1];
+
+};
+
+int Board::get_board_size() {
+    return board_size;
+};
+
+string Board::help_board()
+{
+    string outputt = "\n";
+
+
+    for (int i = 0; i < board_size; i++)
+    {
+        for (int j = 0; j < board_size; j++)
+        {
+            if (j == 0) {
+                outputt = outputt + "  " + to_string((i * board_size) + j + 1);
+            }
+            else {
+                outputt = outputt + " | " + to_string((i * board_size) + j + 1);
+            }
+        }
+        if (i != board_size - 1)
+        {
+            outputt = outputt + "\n" + " -";
+            for (int j = 0; j < board_size - 1; j++) {
+                outputt = outputt + "-----";
+            }
+            outputt = outputt + "\n";
+        }
+
+    }
+    return outputt;
 
 };

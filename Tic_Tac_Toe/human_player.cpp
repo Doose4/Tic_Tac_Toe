@@ -1,10 +1,12 @@
 #include <iostream>
+#include <string>
 #include "human_player.hpp"
 
 HumanPlayer::HumanPlayer(Board* inputted_board, Rules* rules_ptr, string element, int usernum)
 {
     this->board = inputted_board;
     this->rules = rules_ptr;
+    this->boardsize = board->get_board_size();
     usernumber = usernum;
     board->set_mark(usernum, element);
 }
@@ -15,7 +17,7 @@ void HumanPlayer::move(int user)
     int input = 0;
     while (input == 0)
     {
-        std::cout << "Player " << user << ", What cell, 1-9, do you want to mark? ";
+        std::cout << "Player " << user << ", What cell, 1-" << boardsize*boardsize << ", do you want to mark? ";
         cin >> input;
         cin.clear();
         cin.ignore(256, '\n');
